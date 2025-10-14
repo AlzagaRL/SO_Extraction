@@ -1,0 +1,402 @@
+[
+    {
+        "Location": "Abra, Cordillera Administrative Region, Philippines",
+        "Latitude": 17.58,
+        "Longitude": 120.8
+    },
+    {
+        "Location": "Agusan del Norte, Caraga, Philippines",
+        "Latitude": 8.92,
+        "Longitude": 125.46
+    },
+    {
+        "Location": "Agusan del Sur, Caraga, Philippines",
+        "Latitude": 8.36,
+        "Longitude": 125.71
+    },
+    {
+        "Location": "Aklan, Western Visayas, Philippines",
+        "Latitude": 11.6297894,
+        "Longitude": 122.2481177
+    },
+    {
+        "Location": "Albay, Bicol Region, Philippines",
+        "Latitude": 13.216667,
+        "Longitude": 123.55
+    },
+    {
+        "Location": "Antique, Western Visayas, Philippines",
+        "Latitude": 11.1705066,
+        "Longitude": 122.083333
+    },
+    {
+        "Location": "Apayao, Cordillera Administrative Region, Philippines",
+        "Latitude": 18.12,
+        "Longitude": 121.19
+    },
+    {
+        "Location": "Aurora, Central Luzon, Philippines",
+        "Latitude": 16.0474764,
+        "Longitude": 121.6700916
+    },
+    {
+        "Location": "Basilan, Bangsamoro, Philippines",
+        "Latitude": 6.5649821,
+        "Longitude": 122.0649183
+    },
+    {
+        "Location": "Bataan, Central Luzon, Philippines",
+        "Latitude": 14.6436031,
+        "Longitude": 120.4657622
+    },
+    {
+        "Location": "Batanes, Cagayan Valley, Philippines",
+        "Latitude": 20.6442465,
+        "Longitude": 121.8939456
+    },
+    {
+        "Location": "Batangas, Calabarzon, Philippines",
+        "Latitude": 13.9146826,
+        "Longitude": 121.0867566
+    },
+    {
+        "Location": "Benguet, Cordillera Administrative Region, Philippines",
+        "Latitude": 16.52,
+        "Longitude": 120.69
+    },
+    {
+        "Location": "Biliran, Eastern Visayas, Philippines",
+        "Latitude": 11.6,
+        "Longitude": 124.49
+    },
+    {
+        "Location": "Bohol, Central Visayas, Philippines",
+        "Latitude": 9.833333,
+        "Longitude": 124.1615579
+    },
+    {
+        "Location": "Bukidnon, Northern Mindanao, Philippines",
+        "Latitude": 8.022778,
+        "Longitude": 124.998611
+    },
+    {
+        "Location": "Bulacan, Central Luzon, Philippines",
+        "Latitude": 15.0,
+        "Longitude": 121.083333
+    },
+    {
+        "Location": "Cagayan, Cagayan Valley, Philippines",
+        "Latitude": 18.0,
+        "Longitude": 121.833333
+    },
+    {
+        "Location": "Camarines Norte, Bicol Region, Philippines",
+        "Latitude": 14.166667,
+        "Longitude": 122.75
+    },
+    {
+        "Location": "Camarines Sur, Bicol Region, Philippines",
+        "Latitude": 13.6428216,
+        "Longitude": 123.3282338
+    },
+    {
+        "Location": "Camiguin, Northern Mindanao, Philippines",
+        "Latitude": 9.1739753,
+        "Longitude": 124.7256992
+    },
+    {
+        "Location": "Capiz, Western Visayas, Philippines",
+        "Latitude": 11.3852987,
+        "Longitude": 122.6377315
+    },
+    {
+        "Location": "Catanduanes, Bicol Region, Philippines",
+        "Latitude": 13.833333,
+        "Longitude": 124.25
+    },
+    {
+        "Location": "Cavite, Calabarzon, Philippines",
+        "Latitude": 14.2554073,
+        "Longitude": 120.8671503
+    },
+    {
+        "Location": "Cebu, Central Visayas, Philippines",
+        "Latitude": 10.47,
+        "Longitude": 123.83
+    },
+    {
+        "Location": "North Cotabato, Soccsksargen, Philippines",
+        "Latitude": 7.27,
+        "Longitude": 124.86
+    },
+    {
+        "Location": "Davao de Oro, Davao Region, Philippines",
+        "Latitude": 7.45,
+        "Longitude": 126.07
+    },
+    {
+        "Location": "Davao del Norte, Davao Region, Philippines",
+        "Latitude": 7.6179228,
+        "Longitude": 125.6832687
+    },
+    {
+        "Location": "Davao del Sur, Davao Region, Philippines",
+        "Latitude": 6.6983658,
+        "Longitude": 125.3612135
+    },
+    {
+        "Location": "Davao Occidental, Davao Region, Philippines",
+        "Latitude": 6.27,
+        "Longitude": 125.6
+    },
+    {
+        "Location": "Davao Oriental, Davao Region, Philippines",
+        "Latitude": 7.166667,
+        "Longitude": 126.333333
+    },
+    {
+        "Location": "Dinagat Islands, Caraga, Philippines",
+        "Latitude": 10.1577932,
+        "Longitude": 125.5851827
+    },
+    {
+        "Location": "Eastern Samar, Eastern Visayas, Philippines",
+        "Latitude": 11.73,
+        "Longitude": 125.37
+    },
+    {
+        "Location": "Guimaras, Western Visayas, Philippines",
+        "Latitude": 10.5730629,
+        "Longitude": 122.6238907
+    },
+    {
+        "Location": "Ifugao, Cordillera Administrative Region, Philippines",
+        "Latitude": 16.87,
+        "Longitude": 121.22
+    },
+    {
+        "Location": "Ilocos Norte, Ilocos Region, Philippines",
+        "Latitude": 18.166667,
+        "Longitude": 120.75
+    },
+    {
+        "Location": "Ilocos Sur, Ilocos Region, Philippines",
+        "Latitude": 17.2,
+        "Longitude": 120.5
+    },
+    {
+        "Location": "Iloilo, Western Visayas, Philippines",
+        "Latitude": 10.9522168,
+        "Longitude": 122.5799456
+    },
+    {
+        "Location": "Isabela, Cagayan Valley, Philippines",
+        "Latitude": 17.0,
+        "Longitude": 122.0
+    },
+    {
+        "Location": "Kalinga, Cordillera Administrative Region, Philippines",
+        "Latitude": 17.46,
+        "Longitude": 121.31
+    },
+    {
+        "Location": "La Union, Ilocos Region, Philippines",
+        "Latitude": 16.5735957,
+        "Longitude": 120.4089899
+    },
+    {
+        "Location": "Laguna, Calabarzon, Philippines",
+        "Latitude": 14.1696476,
+        "Longitude": 121.3336526
+    },
+    {
+        "Location": "Lanao del Norte, Northern Mindanao, Philippines",
+        "Latitude": 7.9579723,
+        "Longitude": 123.9021124
+    },
+    {
+        "Location": "Lanao del Sur, Bangsamoro, Philippines",
+        "Latitude": 7.8776443,
+        "Longitude": 124.3754759
+    },
+    {
+        "Location": "Leyte, Eastern Visayas, Philippines",
+        "Latitude": 10.7841157,
+        "Longitude": 124.892321
+    },
+    {
+        "Location": "Maguindanao del Norte, Bangsamoro, Philippines",
+        "Latitude": 7.1088356,
+        "Longitude": 124.2072945
+    },
+    {
+        "Location": "Maguindanao del Sur, Bangsamoro, Philippines",
+        "Latitude": 6.9234196,
+        "Longitude": 124.5365357
+    },
+    {
+        "Location": "Marinduque, Mimaropa, Philippines",
+        "Latitude": 13.416667,
+        "Longitude": 121.95
+    },
+    {
+        "Location": "Masbate, Bicol Region, Philippines",
+        "Latitude": 12.166667,
+        "Longitude": 123.583333
+    },
+    {
+        "Location": "Misamis Occidental, Northern Mindanao, Philippines",
+        "Latitude": 8.333333,
+        "Longitude": 123.7
+    },
+    {
+        "Location": "Misamis Oriental, Northern Mindanao, Philippines",
+        "Latitude": 8.6534807,
+        "Longitude": 124.8235205
+    },
+    {
+        "Location": "Mountain Province, Cordillera Administrative Region, Philippines",
+        "Latitude": 17.11,
+        "Longitude": 121.16
+    },
+    {
+        "Location": "Negros Occidental, Negros Island Region, Philippines",
+        "Latitude": 10.416667,
+        "Longitude": 123.0
+    },
+    {
+        "Location": "Negros Oriental, Negros Island Region, Philippines",
+        "Latitude": 9.75,
+        "Longitude": 123.0
+    },
+    {
+        "Location": "Northern Samar, Eastern Visayas, Philippines",
+        "Latitude": 12.42,
+        "Longitude": 124.81
+    },
+    {
+        "Location": "Nueva Ecija, Central Luzon, Philippines",
+        "Latitude": 15.583333,
+        "Longitude": 121.0
+    },
+    {
+        "Location": "Nueva Vizcaya, Cagayan Valley, Philippines",
+        "Latitude": 16.35,
+        "Longitude": 121.13
+    },
+    {
+        "Location": "Palawan, Mimaropa, Philippines",
+        "Latitude": 11.0798978,
+        "Longitude": 120.9373422
+    },
+    {
+        "Location": "Pampanga, Central Luzon, Philippines",
+        "Latitude": 15.0519635,
+        "Longitude": 120.6445398
+    },
+    {
+        "Location": "Pangasinan, Ilocos Region, Philippines",
+        "Latitude": 15.916667,
+        "Longitude": 120.333333
+    },
+    {
+        "Location": "Quezon City, Eastern Manila District, Metro Manila, Philippines",
+        "Latitude": 14.6510546,
+        "Longitude": 121.0486254
+    },
+    {
+        "Location": "Quirino, Cagayan Valley, Philippines",
+        "Latitude": 16.283333,
+        "Longitude": 121.583333
+    },
+    {
+        "Location": "Rizal, Calabarzon, Philippines",
+        "Latitude": 14.65,
+        "Longitude": 121.25
+    },
+    {
+        "Location": "Romblon, Mimaropa, Philippines",
+        "Latitude": 12.5,
+        "Longitude": 122.2
+    },
+    {
+        "Location": "Samar, Eastern Visayas, Philippines",
+        "Latitude": 11.7982219,
+        "Longitude": 125.1690418
+    },
+    {
+        "Location": "Sarangani, Soccsksargen, Philippines",
+        "Latitude": 5.874722,
+        "Longitude": 125.275278
+    },
+    {
+        "Location": "Siquijor, Negros Island Region, Philippines",
+        "Latitude": 9.18,
+        "Longitude": 123.58
+    },
+    {
+        "Location": "Sorsogon, Bicol Region, Philippines",
+        "Latitude": 12.833333,
+        "Longitude": 123.916667
+    },
+    {
+        "Location": "South Cotabato, Soccsksargen, Philippines",
+        "Latitude": 6.2855239,
+        "Longitude": 124.9333096
+    },
+    {
+        "Location": "Southern Leyte, Eastern Visayas, Philippines",
+        "Latitude": 10.3475099,
+        "Longitude": 125.1250896
+    },
+    {
+        "Location": "Sultan Kudarat, Soccsksargen, Philippines",
+        "Latitude": 6.5556705,
+        "Longitude": 124.3271496
+    },
+    {
+        "Location": "Sulu, Zamboanga Peninsula, Philippines",
+        "Latitude": 5.9942808,
+        "Longitude": 121.0787926
+    },
+    {
+        "Location": "Surigao del Norte, Caraga, Philippines",
+        "Latitude": 9.7022868,
+        "Longitude": 125.5464831
+    },
+    {
+        "Location": "Surigao del Sur, Caraga, Philippines",
+        "Latitude": 8.84,
+        "Longitude": 126.15
+    },
+    {
+        "Location": "Tarlac, Central Luzon, Philippines",
+        "Latitude": 15.4937252,
+        "Longitude": 120.4964091
+    },
+    {
+        "Location": "Tawi-Tawi, Bangsamoro, Philippines",
+        "Latitude": 5.2057,
+        "Longitude": 120.0265
+    },
+    {
+        "Location": "Zambales, Central Luzon, Philippines",
+        "Latitude": 15.23,
+        "Longitude": 120.12
+    },
+    {
+        "Location": "Zamboanga del Norte, Zamboanga Peninsula, Philippines",
+        "Latitude": 8.0,
+        "Longitude": 122.666667
+    },
+    {
+        "Location": "Zamboanga del Sur, Zamboanga Peninsula, Philippines",
+        "Latitude": 7.9043,
+        "Longitude": 123.3194
+    },
+    {
+        "Location": "Zamboanga Sibugay, Zamboanga Peninsula, Philippines",
+        "Latitude": 7.7877097,
+        "Longitude": 122.5744217
+    }
+]
