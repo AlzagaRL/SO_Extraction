@@ -171,12 +171,18 @@ class CDSAPIClient:
                 daily_minimums = complete_dataset.resample(valid_time='1D').min()
                 daily_maximums = complete_dataset.resample(valid_time='1D').max()
                 daily_means = complete_dataset.resample(valid_time='1D').mean()
+                daily_sums = complete_dataset.resample(valid_time='1D').sum()
 
-                complete_dataset_daily_aggregated = xr.Dataset({
-                    "daily_min": daily_minimums.to_array(),
-                    "daily_max": daily_maximums.to_array(),
-                    "daily_mean": daily_means.to_array()
-                })
+                if "total" in variable:
+                    complete_dataset_daily_aggregated = xr.Dataset({
+                        "daily_sum": daily_sums.to_array()
+                    })
+                else:
+                    complete_dataset_daily_aggregated = xr.Dataset({
+                        "daily_min": daily_minimums.to_array(),
+                        "daily_max": daily_maximums.to_array(),
+                        "daily_mean": daily_means.to_array()
+                    })
 
                 self.logger.info("Successfully aggregated hourly data into daily data of mean, minimum and maximum.")
                 
@@ -223,7 +229,7 @@ class CDSAPIClient:
 if __name__ == "__main__":
     config = {
         'date_control' : {
-            'start': datetime(2025, 8, 1),
+            'start': datetime(1950, 1, 1),
             'end': datetime.now(),
             'delay': 5, 
             # 5 days is the API delay from real time
@@ -236,7 +242,7 @@ if __name__ == "__main__":
             "north": 21.321928
         },
         # CDS variables: https://earth.bsc.es/gitlab/dtrujill/c3s512-wp1-datachecker/-/blame/573cbc3a5015b0a84a5fb5ce7f230c8d792d284a/cds_metadata/cds_variables_20190404.json
-        'variables': ['surface_pressure'],
+        'variables': ['high_vegetation_cover'],
         'product_type': 'reanalysis',
         'base': 'reanalysis-era5-single-levels',
         'format': 'netcdf',
