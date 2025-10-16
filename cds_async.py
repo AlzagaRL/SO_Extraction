@@ -1,4 +1,5 @@
 import os
+import glob
 import cdsapi
 import asyncio
 import logging
@@ -6,10 +7,12 @@ from typing import Dict
 from pathlib import Path
 from functools import partial
 from dotenv import load_dotenv
+from pathlib import PurePosixPath
 from datetime import datetime, timedelta
+from azure.storage.blob import BlobServiceClient
+load_dotenv()
 
-
-class CDSAPIClient:
+class CDStoAzure:
     """ A client for CDS API data extraction. """
     def __init__(self, config: Dict) -> None:
         """
@@ -74,7 +77,7 @@ class CDSAPIClient:
         self.days = sorted(list(set([d.strftime('%d') for d in date_list])))
         self.months = sorted(list(set([d.strftime('%m') for d in date_list])))
 
-    async def fetch(self) -> None:
+    async def fetch_cds(self) -> None:
         """
         Asynchronously fetches data from the CDS API by offloading blocking
         requests to a separate thread pool. Requests are chunked by climate
@@ -86,7 +89,6 @@ class CDSAPIClient:
             "east": 126.60534668000014,
             "north": 21.070141000000092
         }
-        load_dotenv()
         cds_key = os.getenv("CDS_Key")
         client = cdsapi.Client(
             url="https://cds.climate.copernicus.eu/api",
@@ -95,12 +97,16 @@ class CDSAPIClient:
         loop = asyncio.get_running_loop()
         tasks = []
 
-        self.logger.info(f"Starting to fetch from the CDS API...")
+        self.logger.info(f" 🚀 Starting to fetch from the CDS API...")
+
         for variable in self.variables:
+
             self.logger.info(f"Extraction of historical data for {variable}...")
             Path(f"{self.path}/{variable}").mkdir(exist_ok=True)
+
             for year in self.years:
                 self.scope_date(year)
+
                 for month in self.months:
                     # Offload the blocking `client.retrieve` call to a separate thread.
                     # This is necessary because the cdsapi client is not asyncio-native
@@ -129,14 +135,14 @@ class CDSAPIClient:
                         task = loop.run_in_executor(None, request_call)
                         tasks.append(task)
                         await asyncio.sleep(5)
-                        self.logger.info(f"Starting to process data extraction for chunk {year}-{month}")
+                        self.logger.info(f" 🕘 Starting to process data extraction for chunk {year}-{month}")
 
                     except Exception as e:
-                        self.logger.error(f"Fail to process data extraction for chunk {year}-{month}:", e)
+                        self.logger.error(f" ❌ Fail to process data extraction for chunk {year}-{month}:", e)
 
         # Wait for all the asynchronous retrieval tasks to complete.            
         await asyncio.gather(*tasks)
-        self.logger.info("Extraction from the API is complete!")
+        self.logger.info(" ⭐ Extraction from the API is complete!")
 
     def prep(self) -> None:
         """
@@ -151,31 +157,64 @@ class CDSAPIClient:
         self.scope_years()
         self.logger = logging.getLogger(__name__)
 
+    def upload_azure(self) -> None:
+        """
+        Uploads local files retrieved from the CDS API to an Azure Blob Storage Container.
+        """
+
+        container_name = "so-landing/raw_data/CDS"
+        connection_string = os.getenv("AZURE_CONNECTION_STRING")
+        blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+        container_client = blob_service_client.get_container_client(container_name)
+
+        self.logger.info(" 🚀 Uploading to Azure Blob Storage Container...")
+
+        for variable in self.variables:
+            
+            for year in self.years:
+                file_pattern = Path(self.path) / variable / f'{year}*.nc'
+                file_paths = glob.glob(str(file_pattern))
+
+                for file_path in file_paths:
+                    blob_name = str(PurePosixPath(Path(*Path(file_path).parts[-2:])))
+                    file_path = str(PurePosixPath(Path(file_path)))
+                    
+                    try:
+                        with open(file_path, "rb") as data:
+                            container_client.upload_blob(name=blob_name, data=data, overwrite=True)
+                        self.logger.info(f" ✅ File from {file_path} upload successfully!")
+
+                    except Exception as e:
+                        self.logger.error(f" ❌ File from {file_path} upload failed!", e)
+
+        self.logger.info(" ⭐ Upload Process Complete!")
+                    
     async def launch(self) -> None:
         """
-        Performs pre-fetch setup and asynchronously processes the data fetch request.
+        Performs pre-fetch setup, asynchronously processes the CDS fetch request then upload to Azure blob storage.
         """
         self.prep()
-        await self.fetch()
+        await self.fetch_cds()
+        self.upload_azure()
 
 
 if __name__ == "__main__":
     config = {
         'date_control' : {
-            'start': datetime(1950, 1, 1),
+            'start': datetime(2025, 1, 1),
             'end': datetime.now(),
             'delay': 5, 
             # 5 days is the API delay from real time
         },
         # CDS variables: https://earth.bsc.es/gitlab/dtrujill/c3s512-wp1-datachecker/-/blame/573cbc3a5015b0a84a5fb5ce7f230c8d792d284a/cds_metadata/cds_variables_20190404.json
         # Change the variable inputs and dataset name
-        'variables': ['skin_temperature'],
+        'variables': ['surface_pressure'],
         'dataset_name': 'reanalysis-era5-single-levels',
         'product_type': 'reanalysis',
         'format': 'netcdf',
         'path': 'downloads'
     }
 
-    cds = CDSAPIClient(config)
+    cds = CDStoAzure(config)
     asyncio.run(cds.launch())
 
