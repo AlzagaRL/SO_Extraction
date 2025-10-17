@@ -33,7 +33,8 @@ class CDStoAzure:
         self.start = config.get('date_control').get('start')
         self.end = config.get('date_control').get('end')
         self.latest = config.get('date_control').get('end') - timedelta(days=config.get('date_control').get('delay'))
-        self.variables = self.config.get('variables')
+        self.variables = self.config.get('base_param').get('variables')
+        self.dataset_name = self.config.get('base_param').get('dataset_name')
 
     def scope_years(self) -> None:
         """
@@ -83,12 +84,6 @@ class CDStoAzure:
         requests to a separate thread pool. Requests are chunked by climate
         indicators, years, and months for concurrent processing.
         """
-        bounding_box = {
-            "west": 116.92833709800016,
-            "south": 4.586940000000141,
-            "east": 126.60534668000014,
-            "north": 21.070141000000092
-        }
         cds_key = os.getenv("CDS_Key")
         client = cdsapi.Client(
             url="https://cds.climate.copernicus.eu/api",
@@ -96,6 +91,15 @@ class CDStoAzure:
         )
         loop = asyncio.get_running_loop()
         tasks = []
+
+        base_param = self.config.get('base_param')
+        base_param['area'] = [
+            21.070141000000092,
+            116.92833709800016,
+            4.586940000000141,
+            126.60534668000014,
+        ]
+        base_param.pop('dataset_name')
 
         self.logger.info(f" 🚀 Starting to fetch from the CDS API...")
 
@@ -108,27 +112,19 @@ class CDStoAzure:
                 self.scope_date(year)
 
                 for month in self.months:
-                    # Offload the blocking `client.retrieve` call to a separate thread.
-                    # This is necessary because the cdsapi client is not asyncio-native
+                    base_param['variable'] = variable
+                    base_param['year'] = year
+                    base_param['month'] = month
+                    base_param['day'] = self.days
+                    base_param['time'] = self.hours
+
                     try:
+                        # Offload the blocking `client.retrieve` call to a separate thread.
+                        # This is necessary because the cdsapi client is not asyncio-native
                         request_call = partial(
                             client.retrieve,
-                            self.config.get('dataset_name'),
-                            {
-                                'product_type': self.config.get('product_type'),
-                                'variable': variable,
-                                'year': year,
-                                'month': month,
-                                'day': self.days,
-                                'time': self.hours,
-                                'area': [
-                                    bounding_box.get('north'),
-                                    bounding_box.get('west'),
-                                    bounding_box.get('south'),
-                                    bounding_box.get('east'),
-                                ],
-                                'format': self.config.get('format')
-                            },
+                            self.dataset_name,
+                            base_param,
                             Path(self.path) / variable / f"{year}-{month}.nc"
                         )
                         
@@ -176,7 +172,7 @@ class CDStoAzure:
                 file_paths = glob.glob(str(file_pattern))
 
                 for file_path in file_paths:
-                    blob_name = str(PurePosixPath(self.config.get('dataset_name')) / Path(*Path(file_path).parts[-2:]))
+                    blob_name = str(PurePosixPath(self.dataset_name) / Path(*Path(file_path).parts[-2:]))
                     file_path = str(PurePosixPath(Path(file_path)))
                     
                     try:
@@ -206,12 +202,16 @@ if __name__ == "__main__":
             'delay': 5, 
             # 5 days is the API delay from real time
         },
-        # CDS variables: https://earth.bsc.es/gitlab/dtrujill/c3s512-wp1-datachecker/-/blame/573cbc3a5015b0a84a5fb5ce7f230c8d792d284a/cds_metadata/cds_variables_20190404.json
-        # Change the variable inputs and dataset name
-        'variables': ['surface_pressure'],
-        'dataset_name': 'reanalysis-era5-single-levels',
-        'product_type': 'reanalysis',
-        'format': 'netcdf',
+
+        # Lookup for CDS datasets and variables (not updated): https://earth.bsc.es/gitlab/dtrujill/c3s512-wp1-datachecker/-/blame/573cbc3a5015b0a84a5fb5ce7f230c8d792d284a/cds_metadata/cds_variables_20190404.json
+        # Define below base parameters for the API request; customize values based on extraction needs.
+        'base_param': {
+            'variables': ['surface_pressure'],
+            'dataset_name': 'reanalysis-era5-single-levels',
+            'product_type': 'reanalysis',
+            'format': 'netcdf',
+        },
+
         'path': 'downloads'
     }
 
