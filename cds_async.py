@@ -176,7 +176,7 @@ class CDStoAzure:
                 file_paths = glob.glob(str(file_pattern))
 
                 for file_path in file_paths:
-                    blob_name = str(PurePosixPath(Path(*Path(file_path).parts[-2:])))
+                    blob_name = str(PurePosixPath(self.config.get('dataset_name')) / Path(*Path(file_path).parts[-2:]))
                     file_path = str(PurePosixPath(Path(file_path)))
                     
                     try:
